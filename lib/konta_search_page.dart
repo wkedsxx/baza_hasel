@@ -86,15 +86,15 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                       for (var konto in kontaList)
                         DataRow(
                             onSelectChanged: (value) {
-                              if (true) {
+                              if (selectedRowDocId == konto['id']) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(
                                       'Kliknięto podwójnie id: ${konto['id']}'),
                                   duration: const Duration(seconds: 1),
                                 ));
-                                selectedRowDocId = konto['id'];
                               }
+                              selectedRowDocId = konto['id'];
                             },
                             cells: <DataCell>[
                               DataCell(Text(konto['login'])),
