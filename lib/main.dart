@@ -1,9 +1,7 @@
-import 'package:baza_hasel/login_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:baza_hasel/views/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:baza_hasel/konta_search_page.dart';
 
 void main() async {
   await Firebase.initializeApp(

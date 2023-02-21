@@ -1,4 +1,5 @@
-import 'package:baza_hasel/login_page.dart';
+import 'package:baza_hasel/views/login_page.dart';
+import 'package:baza_hasel/views/konto_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -93,6 +94,10 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                                       'Kliknięto podwójnie id: ${konto['id']}'),
                                   duration: const Duration(seconds: 1),
                                 ));
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => KontoDetailsPage(
+                                          kontoDocId: konto['id'],
+                                        )));
                               }
                               selectedRowDocId = konto['id'];
                             },
