@@ -1,5 +1,5 @@
-import 'package:baza_hasel/views/login_page.dart';
-import 'package:baza_hasel/views/konto_details_page.dart';
+import '/views/login_page.dart';
+import '/views/konto_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
