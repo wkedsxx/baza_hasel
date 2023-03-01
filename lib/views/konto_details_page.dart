@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 
 class KontoDetailsPage extends StatefulWidget {
   const KontoDetailsPage({super.key, required this.kontoDocId});
@@ -19,6 +18,9 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
   var nazwaBDController = TextEditingController();
   var uwagiController = TextEditingController();
   var dataUtworzeniaController = TextEditingController();
+  var kontrahentController = TextEditingController();
+  var hostController = TextEditingController();
+  var typKontaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +40,26 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
                   return Column(
                     children: [
                       tile(Icons.person, 'Login:', konto['login'],
-                          loginController),
-                      tile(
-                          Icons.key, 'Hasło:', konto['haslo'], hasloController),
+                          loginController, false),
+                      tile(Icons.key, 'Hasło:', konto['haslo'], hasloController,
+                          true),
                       tile(Icons.table_rows_rounded, 'Nazwa BD:',
-                          konto['nazwa BD'], nazwaBDController),
+                          konto['nazwa BD'], nazwaBDController, true),
                       tile(Icons.feed, 'Uwagi:', konto['uwagi'],
-                          uwagiController),
+                          uwagiController, true),
+                      tile(Icons.groups, 'Kontrahent:', konto['kontrahent'],
+                          kontrahentController, false),
+                      tile(Icons.lan, 'Host:', konto['host'], hostController,
+                          false),
+                      tile(Icons.manage_accounts, 'Typ konta:',
+                          konto['typ konta'], typKontaController, false),
                       tile(
                           Icons.calendar_today,
                           'Data utworzenia:',
                           DateFormat('dd-MM-yyyy').format(
                               (konto['data utworzenia'] as Timestamp).toDate()),
-                          dataUtworzeniaController),
+                          dataUtworzeniaController,
+                          false),
                     ],
                   );
                 }
@@ -62,13 +71,17 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
   }
 
   Row tile(IconData icon, String title, String value,
-      TextEditingController controller) {
+      TextEditingController controller, bool isEditable) {
     return Row(
       children: [
         Icon(icon),
         Text(title),
         const SizedBox(width: 50),
-        Expanded(child: TextField(controller: controller..text = value))
+        Expanded(
+            child: TextField(
+          controller: controller..text = value,
+          readOnly: !isEditable,
+        ))
       ],
     );
   }
