@@ -1,5 +1,7 @@
 import '/views/login_page.dart';
 import '/views/konto_details_page.dart';
+import '/views/konto_new_page.dart';
+import '/views/kontrahenci_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,8 +15,6 @@ class KontaSearchPage extends StatefulWidget {
 class _KontaSearchPageState extends State<KontaSearchPage> {
   @override
   Widget build(BuildContext context) {
-    CollectionReference kontrahenci =
-        FirebaseFirestore.instance.collection('kontrahenci');
     CollectionReference konta = FirebaseFirestore.instance.collection('konta');
     String selectedRowDocId = '0';
     return Scaffold(
@@ -30,31 +30,16 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
               icon: const Icon(Icons.logout),
               label: const Text('Wyloguj'),
             ),
-            FutureBuilder(
-              future: kontrahenci.get(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  print(snapshot.error);
-                  return const Text("Coś poszło nie tak");
-                }
-
-                if (!snapshot.hasData) {
-                  return const Text("Problem z kolekcją");
-                }
-                if (snapshot.connectionState == ConnectionState.done) {
-                  List<dynamic> data =
-                      snapshot.data!.docs.map((doc) => doc.data()).toList();
-                  List<Widget> widgetList = [];
-                  for (var doc in data) {
-                    widgetList.add(Text('kontrahent: ${doc['nazwa']}'));
-                  }
-                  return Column(children: widgetList);
-
-                  // return Text('nazwa: ${data['nazwa']}');
-                }
-                return const Text('Ładowanie');
-              },
+            ElevatedButton.icon(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const KontrahenciPage())),
+                icon: const Icon(Icons.groups),
+                label: const Text('Kontrahenci')),
+            ElevatedButton.icon(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const KontoNewPage())),
+              icon: const Icon(Icons.person_add),
+              label: const Text('Dodaj konto'),
             ),
             FutureBuilder(
                 future: konta.get(),
