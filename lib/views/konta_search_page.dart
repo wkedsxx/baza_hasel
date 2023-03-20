@@ -2,6 +2,7 @@ import '/views/login_page.dart';
 import '/views/konto_details_page.dart';
 import '/views/konto_new_page.dart';
 import '/views/kontrahenci_page.dart';
+import '/views/ui_elements/collection_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +50,7 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                 children: [
                   const Icon(Icons.filter_alt),
                   const Text('Host'),
-                  dropdownButtonFromCollection(hosty),
+                  CollectionDropdown(collectionRef: hosty),
                 ],
               ),
               FutureBuilder(
@@ -115,30 +116,12 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                                   ])
                           ]);
                     }
-                    return const Text('Ładowanie');
+                    return const Text('Ładowanie...');
                   }),
             ],
           ),
         ),
       ),
     );
-  }
-
-  FutureBuilder dropdownButtonFromCollection(CollectionReference collection) {
-    // List<String> docs = [for (var doc in collection.docs) doc['nazwa']];
-    // List<DropdownMenuItem<String>> dropdownItems = [
-    //   for (var item in docs)
-    //     DropdownMenuItem(
-    //       value: item,
-    //       child: Text(item),
-    //     )
-    // ];
-    return FutureBuilder(
-      future: collection.get(),
-      builder: (BuildContext context, snapshot) {
-        return Text('eli');
-      },
-    );
-    // DropdownButton(items: dropdownItems, onChanged: null);
   }
 }
