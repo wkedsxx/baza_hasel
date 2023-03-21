@@ -10,13 +10,23 @@ class CollectionDropdown extends StatefulWidget {
 }
 
 class _CollectionDropdownState extends State<CollectionDropdown> {
-  String dropdownValue = '';
+  late CollectionReference collectionRef;
+  late Future<QuerySnapshot<Object?>> collectionRefGet;
+  String? dropdownValue;
+  @override
+  void initState() {
+    super.initState();
+    collectionRef = widget.collectionRef;
+    collectionRefGet = collectionRef.get();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: widget.collectionRef.get(),
+        future: collectionRefGet,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            dropdownValue ??= snapshot.data!.docs.first['nazwa'].toString();
             return DropdownButton(
               items: [
                 for (var doc in snapshot.data!.docs)
@@ -30,6 +40,7 @@ class _CollectionDropdownState extends State<CollectionDropdown> {
                   dropdownValue = newValue!;
                 });
               },
+              value: dropdownValue,
             );
           }
           return const Text('Ładowanie...');

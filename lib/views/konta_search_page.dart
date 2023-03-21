@@ -49,7 +49,7 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   const Icon(Icons.filter_alt),
-                  const Text('Host'),
+                  const Text('Host: '),
                   CollectionDropdown(collectionRef: hosty),
                 ],
               ),
