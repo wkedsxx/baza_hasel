@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CollectionDropdown extends StatefulWidget {
   final CollectionReference collectionRef;
-  const CollectionDropdown({super.key, required this.collectionRef});
+  final Function callback;
+  const CollectionDropdown(
+      {super.key, required this.collectionRef, required this.callback});
 
   @override
   State<CollectionDropdown> createState() => _CollectionDropdownState();
@@ -38,6 +40,7 @@ class _CollectionDropdownState extends State<CollectionDropdown> {
               onChanged: (String? newValue) {
                 setState(() {
                   dropdownValue = newValue!;
+                  widget.callback(newValue);
                 });
               },
               value: dropdownValue,

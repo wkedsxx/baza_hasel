@@ -14,11 +14,20 @@ class KontaSearchPage extends StatefulWidget {
 }
 
 class _KontaSearchPageState extends State<KontaSearchPage> {
+  String? hostValue;
+  void updateHostFilter(String? newValue) {
+    setState(() {
+      hostValue = newValue;
+      print(hostValue);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference konta = FirebaseFirestore.instance.collection('konta');
     CollectionReference hosty = FirebaseFirestore.instance.collection('hosty');
     String selectedRowDocId = '0';
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -50,11 +59,12 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                 children: [
                   const Icon(Icons.filter_alt),
                   const Text('Host: '),
-                  CollectionDropdown(collectionRef: hosty),
+                  CollectionDropdown(
+                      collectionRef: hosty, callback: updateHostFilter),
                 ],
               ),
               FutureBuilder(
-                  future: konta.get(),
+                  future: konta.where('host', isEqualTo: hostValue).get(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
