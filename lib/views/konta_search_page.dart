@@ -18,6 +18,9 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
   void updateHostFilter(String? newValue) {
     setState(() {
       hostValue = newValue;
+      if (hostValue == 'Wszystkie') {
+        hostValue = null;
+      }
       print(hostValue);
     });
   }
@@ -60,7 +63,10 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                   const Icon(Icons.filter_alt),
                   const Text('Host: '),
                   CollectionDropdown(
-                      collectionRef: hosty, callback: updateHostFilter),
+                    collectionRef: hosty,
+                    callback: updateHostFilter,
+                    additionalValue: 'Wszystkie',
+                  ),
                 ],
               ),
               FutureBuilder(

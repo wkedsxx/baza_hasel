@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CollectionDropdown extends StatefulWidget {
+  final String? additionalValue;
   final CollectionReference collectionRef;
   final Function callback;
   const CollectionDropdown(
-      {super.key, required this.collectionRef, required this.callback});
+      {super.key,
+      required this.collectionRef,
+      required this.callback,
+      this.additionalValue});
 
   @override
   State<CollectionDropdown> createState() => _CollectionDropdownState();
@@ -28,9 +32,17 @@ class _CollectionDropdownState extends State<CollectionDropdown> {
         future: collectionRefGet,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            dropdownValue ??= snapshot.data!.docs.first['nazwa'].toString();
+            // if (widget.additionalValue != null) {
+            //   dropdownValue = widget.additionalValue;
+            // }
+            // dropdownValue ??= widget.additionalValue;
             return DropdownButton(
               items: [
+                if (widget.additionalValue != null)
+                  DropdownMenuItem(
+                    value: widget.additionalValue,
+                    child: Text(widget.additionalValue!),
+                  ),
                 for (var doc in snapshot.data!.docs)
                   DropdownMenuItem(
                     value: doc['nazwa'].toString(),
