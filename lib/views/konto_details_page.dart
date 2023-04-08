@@ -61,6 +61,37 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
                               (konto['data utworzenia'] as Timestamp).toDate()),
                           dataUtworzeniaController,
                           false),
+                      const SizedBox(height: 100),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Map<String, dynamic> updatedKonto = {
+                                'haslo': hasloController.text,
+                                'nazwa BD': nazwaBDController.text,
+                                'uwagi': uwagiController.text,
+                                'data utworzenia': FieldValue.serverTimestamp()
+                              };
+                              kontoRef.update(updatedKonto);
+                            },
+                            icon: const Icon(Icons.person_add),
+                            label: const Text('Aktualizuj konto'),
+                          ),
+                          const SizedBox(width: 50),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              if (sureToDelete(konto['login'])) {
+                                print('Usuwam');
+                              } else {
+                                print('Anulowano usuwanie');
+                              }
+                            },
+                            icon: const Icon(Icons.person_remove),
+                            label: const Text('Usuń konto'),
+                          ),
+                        ],
+                      )
                     ],
                   );
                 }
@@ -85,5 +116,31 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
         ))
       ],
     );
+  }
+
+  bool sureToDelete(String kontoLogin) {
+    bool ifDelete = false;
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Czy na pewno chcesz usunąć konto: $kontoLogin?'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    ifDelete = true;
+                    Navigator.pop(context);
+                  },
+                  child: const Text('TAK')),
+              TextButton(
+                  onPressed: () {
+                    ifDelete = false;
+                    Navigator.pop(context);
+                  },
+                  child: const Text('NIE')),
+            ],
+          );
+        });
+    return ifDelete;
   }
 }
