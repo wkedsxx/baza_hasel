@@ -23,6 +23,8 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
   var hostController = TextEditingController();
   var typKontaController = TextEditingController();
 
+  // bool ifDeleteKonto = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +82,13 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
                           ),
                           const SizedBox(width: 50),
                           ElevatedButton.icon(
-                            onPressed: () {
-                              if (sureToDelete(konto['login'])) {
-                                print('Usuwam');
+                            onPressed: () async {
+                              bool ifDelete =
+                                  await showDeleteDialog(konto['login']);
+                              if (ifDelete) {
+                                print('Usuwam konto');
+                                kontoRef.delete();
+                                Navigator.pop(context);
                               } else {
                                 print('Anulowano usuwanie');
                               }
@@ -118,9 +124,8 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
     );
   }
 
-  bool sureToDelete(String kontoLogin) {
-    bool ifDelete = false;
-    showDialog(
+  Future<bool> showDeleteDialog(String kontoLogin) async {
+    return await showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -128,19 +133,16 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
             actions: [
               TextButton(
                   onPressed: () {
-                    ifDelete = true;
-                    Navigator.pop(context);
+                    Navigator.pop(context, true);
                   },
                   child: const Text('TAK')),
               TextButton(
                   onPressed: () {
-                    ifDelete = false;
-                    Navigator.pop(context);
+                    Navigator.pop(context, false);
                   },
                   child: const Text('NIE')),
             ],
           );
         });
-    return ifDelete;
   }
 }
