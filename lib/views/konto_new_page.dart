@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/views/ui_elements/collection_dropdown.dart';
+import '/views/konta_search_page.dart';
 
 class KontoNewPage extends StatefulWidget {
   const KontoNewPage({super.key});
@@ -81,6 +82,8 @@ class _KontoNewPageState extends State<KontoNewPage> {
                     'data utworzenia': FieldValue.serverTimestamp()
                   };
                   konta.add(newKonto);
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => KontaSearchPage()));
                 },
                 icon: const Icon(Icons.person_add),
                 label: const Text('Dodaj konto'),

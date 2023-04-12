@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import '/views/konta_search_page.dart';
 
 class KontoDetailsPage extends StatefulWidget {
   const KontoDetailsPage({super.key, required this.kontoDocId});
@@ -88,7 +89,8 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
                               if (ifDelete) {
                                 print('Usuwam konto');
                                 kontoRef.delete();
-                                Navigator.pop(context);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => KontaSearchPage()));
                               } else {
                                 print('Anulowano usuwanie');
                               }

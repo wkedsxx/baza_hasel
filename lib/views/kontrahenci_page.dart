@@ -23,7 +23,7 @@ class _KontrahenciPageState extends State<KontrahenciPage> {
         child: Column(children: [
           const Text('Lista kontrahentów:'),
           FutureBuilder(
-            future: kontrahenci.get(),
+            future: kontrahenci.orderBy('nazwa').get(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -58,6 +58,9 @@ class _KontrahenciPageState extends State<KontrahenciPage> {
                     //   'nazwa': newKontrahentController..text
                     // };
                     kontrahenci.add({'nazwa': newKontrahentController.text});
+                    setState(() {
+                      newKontrahentController.text = '';
+                    });
                   },
                   icon: const Icon(Icons.add_circle)),
             ],

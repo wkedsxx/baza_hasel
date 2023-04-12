@@ -23,7 +23,7 @@ class _CollectionDropdownState extends State<CollectionDropdown> {
   void initState() {
     super.initState();
     collectionRef = widget.collectionRef;
-    collectionRefGet = collectionRef.get();
+    collectionRefGet = collectionRef.orderBy('nazwa').get();
   }
 
   @override
