@@ -2,6 +2,8 @@ import '/views/login_page.dart';
 import '/views/konto_details_page.dart';
 import '/views/konto_new_page.dart';
 import '/views/kontrahenci_page.dart';
+import '/views/hosty_page.dart';
+import '/views/typy_kont_page.dart';
 import '/views/ui_elements/collection_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,11 +48,33 @@ class _KontaSearchPageState extends State<KontaSearchPage> {
                 icon: const Icon(Icons.logout),
                 label: const Text('Wyloguj'),
               ),
-              ElevatedButton.icon(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const KontrahenciPage())),
-                  icon: const Icon(Icons.groups),
-                  label: const Text('Kontrahenci')),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                      onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const KontrahenciPage())),
+                      icon: const Icon(Icons.groups),
+                      label: const Text('Kontrahenci')),
+                  ElevatedButton.icon(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const HostyPage())),
+                    icon: const Icon(Icons.lan),
+                    label: const Text('Hosty'),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const TypyKontPage())),
+                    icon: const Icon(Icons.manage_accounts),
+                    label: const Text('Typy kont'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const KontoNewPage())),

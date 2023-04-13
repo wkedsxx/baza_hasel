@@ -77,6 +77,8 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
                                 'data utworzenia': FieldValue.serverTimestamp()
                               };
                               kontoRef.update(updatedKonto);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => KontaSearchPage()));
                             },
                             icon: const Icon(Icons.person_add),
                             label: const Text('Aktualizuj konto'),
