@@ -21,6 +21,25 @@ class _KontrahenciPageState extends State<KontrahenciPage> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(children: [
+          Row(
+            children: [
+              const Text('Nowy kontrahent:'),
+              SizedBox(
+                  width: 100,
+                  child: TextField(controller: newKontrahentController)),
+              IconButton(
+                  onPressed: () {
+                    // Map<String, dynamic> newKontrahent = {
+                    //   'nazwa': newKontrahentController..text
+                    // };
+                    kontrahenci.add({'nazwa': newKontrahentController.text});
+                    setState(() {
+                      newKontrahentController.text = '';
+                    });
+                  },
+                  icon: const Icon(Icons.add_circle)),
+            ],
+          ),
           const Text('Lista kontrahentów:'),
           FutureBuilder(
             future: kontrahenci.orderBy('nazwa').get(),
@@ -41,30 +60,13 @@ class _KontrahenciPageState extends State<KontrahenciPage> {
                 for (var doc in data) {
                   widgetList.add(Text(doc['nazwa']));
                 }
-                return Column(children: widgetList);
+                return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: widgetList);
               }
               return const Text('Ładowanie');
             },
           ),
-          Row(
-            children: [
-              const Text('Nowy kontrahent:'),
-              SizedBox(
-                  width: 100,
-                  child: TextField(controller: newKontrahentController)),
-              IconButton(
-                  onPressed: () {
-                    // Map<String, dynamic> newKontrahent = {
-                    //   'nazwa': newKontrahentController..text
-                    // };
-                    kontrahenci.add({'nazwa': newKontrahentController.text});
-                    setState(() {
-                      newKontrahentController.text = '';
-                    });
-                  },
-                  icon: const Icon(Icons.add_circle)),
-            ],
-          )
         ]),
       ),
     );
