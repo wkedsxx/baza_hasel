@@ -24,7 +24,7 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
   var hostController = TextEditingController();
   var typKontaController = TextEditingController();
 
-  // bool ifDeleteKonto = false;
+  bool obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,8 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
                     children: [
                       tile(Icons.person, 'Login:', konto['login'],
                           loginController, false),
-                      tile(Icons.key, 'Hasło:', konto['haslo'], hasloController,
-                          true),
+                      passwordTile(Icons.key, 'Hasło:', konto['haslo'],
+                          hasloController, true),
                       tile(Icons.table_rows_rounded, 'Nazwa BD:',
                           konto['nazwa BD'], nazwaBDController, true),
                       tile(Icons.feed, 'Uwagi:', konto['uwagi'],
@@ -124,6 +124,32 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
           controller: controller..text = value,
           readOnly: !isEditable,
         ))
+      ],
+    );
+  }
+
+  Row passwordTile(IconData icon, String title, String value,
+      TextEditingController controller, bool isEditable) {
+    return Row(
+      children: [
+        Icon(icon),
+        Text(title),
+        const SizedBox(width: 50),
+        Expanded(
+            child: TextField(
+          controller: controller..text = value,
+          obscureText: obscurePassword,
+          readOnly: !isEditable,
+        )),
+        IconButton(
+            onPressed: () {
+              setState(() {
+                obscurePassword = !obscurePassword;
+              });
+            },
+            icon: obscurePassword
+                ? const Icon(Icons.visibility)
+                : const Icon(Icons.visibility_off)),
       ],
     );
   }
