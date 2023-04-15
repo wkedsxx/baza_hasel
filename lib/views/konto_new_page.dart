@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:random_password_generator/random_password_generator.dart';
 import '/views/ui_elements/collection_dropdown.dart';
 import '/views/konta_search_page.dart';
 
@@ -55,35 +56,40 @@ class _KontoNewPageState extends State<KontoNewPage> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              tile(Icons.person, 'Login:', loginController),
-              tile(Icons.key, 'Hasło:', hasloController),
+              tile(Icons.person, 'Login*:', loginController),
+              newPasswordTile(Icons.key, 'Hasło:', hasloController),
               tile(Icons.table_rows_rounded, 'Nazwa BD:', nazwaBDController),
               tile(Icons.feed, 'Uwagi:', uwagiController),
               tileDropdown(
-                Icons.groups,
-                'Kontrahent:',
-                kontrahenci,
-                updateKontrahent,
-              ),
-              tileDropdown(Icons.lan, 'Host:', hosty, updateHost),
-              tileDropdown(Icons.manage_accounts, 'Typ konta:', typyKont,
+                  Icons.groups, 'Kontrahent*:', kontrahenci, updateKontrahent),
+              tileDropdown(Icons.lan, 'Host*:', hosty, updateHost),
+              tileDropdown(Icons.manage_accounts, 'Typ konta*:', typyKont,
                   updateTypkonta),
               const SizedBox(height: 100),
               ElevatedButton.icon(
                 onPressed: () {
-                  Map<String, dynamic> newKonto = {
-                    'login': loginController.text,
-                    'haslo': hasloController.text,
-                    'nazwa BD': nazwaBDController.text,
-                    'uwagi': uwagiController.text,
-                    'kontrahent': kontrahentValue,
-                    'host': hostValue,
-                    'typ konta': typKontaValue,
-                    'data utworzenia': FieldValue.serverTimestamp()
-                  };
-                  konta.add(newKonto);
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => KontaSearchPage()));
+                  if (loginController.text != '' &&
+                      kontrahentValue != null &&
+                      hostValue != null &&
+                      typKontaValue != null) {
+                    Map<String, dynamic> newKonto = {
+                      'login': loginController.text,
+                      'haslo': hasloController.text,
+                      'nazwa BD': nazwaBDController.text,
+                      'uwagi': uwagiController.text,
+                      'kontrahent': kontrahentValue,
+                      'host': hostValue,
+                      'typ konta': typKontaValue,
+                      'data utworzenia': FieldValue.serverTimestamp()
+                    };
+                    konta.add(newKonto);
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => KontaSearchPage()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Wypełnij wymagane pola!'),
+                    ));
+                  }
                 },
                 icon: const Icon(Icons.person_add),
                 label: const Text('Dodaj konto'),
@@ -100,6 +106,30 @@ class _KontoNewPageState extends State<KontoNewPage> {
         Text(title),
         const SizedBox(width: 50),
         Expanded(child: TextField(controller: controller))
+      ],
+    );
+  }
+
+  Row newPasswordTile(
+      IconData icon, String title, TextEditingController controller) {
+    return Row(
+      children: [
+        Icon(icon),
+        Text(title),
+        const SizedBox(width: 50),
+        Expanded(child: TextField(controller: controller)),
+        ElevatedButton(
+            onPressed: () {
+              final passwordGenerator = RandomPasswordGenerator();
+              String newPassword = passwordGenerator.randomPassword(
+                  letters: true,
+                  numbers: true,
+                  uppercase: true,
+                  specialChar: true,
+                  passwordLength: 12);
+              controller.text = newPassword;
+            },
+            child: const Text('Generuj silne hasło')),
       ],
     );
   }
