@@ -7,13 +7,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // var db = FirebaseFirestore.instance;
-  // db.collection('kontrahenci').get().then((event) {
-  //   for (var doc in event.docs) {
-  //     print('${doc.id} => ${doc.data()}');
-  //   }
-  // });
   runApp(const MainApp());
 }
 

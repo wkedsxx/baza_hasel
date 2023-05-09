@@ -157,6 +157,7 @@ class _KontoDetailsPageState extends State<KontoDetailsPage> {
   Future<bool> showDeleteDialog(String kontoLogin) async {
     return await showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Czy na pewno chcesz usunąć konto: $kontoLogin?'),
