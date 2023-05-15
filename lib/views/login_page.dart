@@ -14,11 +14,6 @@ class _LoginPageState extends State<LoginPage> {
   var passwordController = TextEditingController();
 
   void submitCredentials() async {
-    // FirebaseAuth.instance.setPersistence(Persistence.NONE);
-
-    // Do zakomentowania na prod
-    loginController.text = 'dawid.debest@gmail.com';
-    passwordController.text = 'Gromxoger1!';
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(

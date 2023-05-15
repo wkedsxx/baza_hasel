@@ -32,10 +32,6 @@ class _CollectionDropdownState extends State<CollectionDropdown> {
         future: collectionRefGet,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            // if (widget.additionalValue != null) {
-            //   dropdownValue = widget.additionalValue;
-            // }
-            // dropdownValue ??= widget.additionalValue;
             return DropdownButton(
               items: [
                 if (widget.additionalValue != null)

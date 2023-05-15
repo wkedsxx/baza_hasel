@@ -30,9 +30,6 @@ class _HostyPageState extends State<HostyPage> {
                     child: TextField(controller: newHostController)),
                 IconButton(
                     onPressed: () {
-                      // Map<String, dynamic> newKontrahent = {
-                      //   'nazwa': newKontrahentController..text
-                      // };
                       hosty.add({'nazwa': newHostController.text});
                       setState(() {
                         newHostController.text = '';
