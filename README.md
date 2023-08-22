@@ -18,25 +18,31 @@ Projekt aplikacji webowej stworzony z użyciem frameworka **Flutter** i usług *
 ### Zrzuty ekranu z działającej aplikacji:
 
 Tak w uproszczeniu wygląda struktura bazy danych Cloud Firestore:
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/be915f22-9a91-4bf5-a947-e6f983545fb0)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/82adc532-dcc4-4263-bb9d-ebfb3f74d355)
 
 Panel logowania:\
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/bf7e8c9f-73f7-49d1-8b5f-5bf658b2ba93)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/8f925080-c932-4ae4-a311-76ac1334eb41)
 
 Strona główna aplikacji:\
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/1ca9eacb-194c-4939-a054-4b87aa4b3ad8)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/16423d29-8d81-459e-bd3b-42f2972957ad)
 
 Widok strony głównej aplikacji po zmianie filtru:\
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/c4dc20d3-1d0a-456f-8a5c-4b3c24344219)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/5b812867-b293-4a05-8bec-bbdaaa8838de)
+
 
 Widok szczegółów konta (po dwukrotnym kliknięciu na obiekt listy ze strony głównej):\
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/6fa8f793-b219-4245-b22a-5a24e65b3fb6)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/14b9787c-9899-4d64-b49a-17278c881046)
+
 
 Widok okna dialogowego, na któym użytkownik może potwierdzić operacje usuwania konta:\
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/081b7378-a098-4702-8e9d-27d0d1bfa29b)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/16e8ed60-b14a-4729-bbad-80ec78c09434)
+
+Widok strony dodawania nowego konta:
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/543a21a2-79db-4b11-888c-c6c7ea4769da)
 
 Widok zarządzania hostami (analogiczne widoki zarządzania są także dla kontrahentów i typów kont):\
-![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/e5a04afe-699f-4a32-8796-571cd1954d43)
+![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/9867787b-d9e0-4fd7-be4b-73536c069bef)
+
 
 
 
