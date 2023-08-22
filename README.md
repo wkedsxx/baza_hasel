@@ -2,22 +2,21 @@
 
 ## Aplikacja do zarządzania hasłami dla administratorów systemów IT
 
-Projekt aplikacji webowej stworzony z użyciem frameworka **Flutter** i usług **Firebase** (Hosting, Authentication i CLoud Firestore)
+Projekt aplikacji webowej stworzony z użyciem frameworka **Flutter** i usług **Firebase** (Hosting, Authentication i Cloud Firestore)
 
-Celem niniejszej pracy jest opracowanie aplikacji internetowej do zarządzania hasłami
-dla administratorów systemów IT obejmującej następujące funkcjonalności:
-• autoryzowany dostęp do bazy danych;\
-• globalna dostępność aplikacji w chmurze;\
-• operacje CRUD (create, read, update, delete) na bazie danych z użyciem interfejsu użytkownika;\
-• generowanie silnych haseł;\
-• filtrowanie listy kont.\
-Zakres pracy obejmuje następujące zagadnienia:\
-• stworzenie modelu danych w bazie typu NoSQL Cloud Firestore;\
-• stworzenie aplikacji internetowej z użyciem Flutter SDK;\
-• implementacja i zastosowanie usług Firebase w aplikacji.\
+## Celem niniejszej pracy jest opracowanie aplikacji internetowej do zarządzania hasłami dla administratorów systemów IT obejmującej następujące funkcjonalności:  
+• autoryzowany dostęp do bazy danych;  
+• globalna dostępność aplikacji w chmurze;  
+• operacje CRUD (create, read, update, delete) na bazie danych z użyciem interfejsu użytkownika;  
+• generowanie silnych haseł;  
+• filtrowanie listy kont.  
+## Zakres pracy obejmuje następujące zagadnienia:
+• stworzenie modelu danych w bazie typu NoSQL Cloud Firestore;  
+• stworzenie aplikacji internetowej z użyciem Flutter SDK;  
+• implementacja i zastosowanie usług Firebase w aplikacji.  
 
-### Zrzuty ekranu z działającej aplikacji:\
-\
+### Zrzuty ekranu z działającej aplikacji:
+
 Tak w uproszczeniu wygląda struktura bazy danych Cloud Firestore:
 ![image](https://github.com/wkedsxx/baza_hasel/assets/31741495/be915f22-9a91-4bf5-a947-e6f983545fb0)
 
